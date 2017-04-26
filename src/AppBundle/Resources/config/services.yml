@@ -1,0 +1,10 @@
+services:
+    app.command.update_job_list_command:
+        class: AppBundle\Command\UpdateJobListCommand
+        arguments:
+          - "@app.utility.web_site_parser"
+        tags:
+            - { name: console.command }
+            
+    app.utility.web_site_parser:
+        class: AppBundle\Service\Utility\WebSiteParser
