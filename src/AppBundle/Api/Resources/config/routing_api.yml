@@ -1,0 +1,4 @@
+ever_job_api_contact:
+    type:     rest
+    resource: AppBundle\Api\Controller\JobController
+    name_prefix:  ever_job_api_
