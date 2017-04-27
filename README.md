@@ -8,7 +8,7 @@ A very simple way to get and store new job from alsacreation website
 First of all, you need to get the project by cloning it with git with the following command :
 
 ```sh
-$ git clone git@vps345920.ovh.net:project-public/EverJob.git
+$ git clone git@github.com:ktxwebdev/EverJob.git
 ```
 or 
 
