@@ -8,6 +8,11 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
+/**
+ * Update Job List Command
+ * 
+ * Get the job list and save/update it to the database 
+ */
 class UpdateJobListCommand extends ContainerAwareCommand {
 
     protected function configure() {
@@ -35,6 +40,7 @@ class UpdateJobListCommand extends ContainerAwareCommand {
 
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
 
+        // Get the job list information
         $jobList = $this->webSiteParserService->getWebSiteInformation();
 
         $nbJobList = count($jobList);
@@ -51,13 +57,16 @@ class UpdateJobListCommand extends ContainerAwareCommand {
 
             $jobNumber = $jobData['number'];
 
+            // Get the job from the database thanks to his number
             $job = $em->getRepository('AppBundle:Job')->findOneByNumber($jobNumber);
 
+            // If the job doesn't exist, create a new one
             if (is_null($job)) {
                 $job = new Job();
                 $job->setNumber($jobNumber);
                 $nbNewJob++;
             } else {
+                // If the job already exist, update it
                 $job->setDateUpdate(new \DateTime());
                 $nbUpdateJob++;
             }
